@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitin Shah Apps — Mobile Applications Portfolio</title>
+<meta name="description" content="Official mobile app suite for precision culinary formulation, dough fermentation kinetics, gelato balancing, and travel discovery.">
+<meta name="theme-color" content="#15110C">
+<link rel="icon" href="assets/g-balancer/image_11.png">
+<link rel="apple-touch-icon" href="assets/g-balancer/image_11.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15110C; --ink-2:#241D14; --paper:#F4EEE0; --paper-2:#EAE1CC;
+  --line-on-ink:rgba(244,238,224,.14); --line-on-paper:rgba(21,17,12,.14);
+  --copper:#B5602C; --copper-bright:#D98A4D; --frost:#7FD6DE; --frost-dim:#4F9AA3;
+  --text-on-ink:#F4EEE0; --text-on-ink-dim:#B8AE9B; --text-on-paper:#1E180F; --text-on-paper-dim:#5B5140;
+  --radius-plate:2px; --shadow-plate:0 2px 0 rgba(0,0,0,.25), 0 22px 46px -26px rgba(0,0,0,.55);
+}
+html[data-theme="light"]{
+  --ink:#F4EEE0; --ink-2:#EAE1CC; --paper:#15110C; --paper-2:#241D14;
+  --line-on-ink:rgba(21,17,12,.14); --line-on-paper:rgba(244,238,224,.14);
+  --text-on-ink:#1E180F; --text-on-ink-dim:#5B5140; --text-on-paper:#F4EEE0; --text-on-paper-dim:#B8AE9B;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Manrope',-apple-system,sans-serif;background:var(--ink);color:var(--text-on-ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;margin:0 0 .5em;font-weight:600}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.mono{font-family:'Space Mono',monospace}
+.tag{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--copper-bright);display:inline-flex;align-items:center;gap:8px;margin:0 0 14px}
+.tag::before{content:"";width:18px;height:1px;background:var(--copper-bright)}
+
+/* Header & Dial Switch */
+header{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);background:color-mix(in oklab,var(--ink) 85%,transparent);border-bottom:1px solid var(--line-on-ink)}
+.nav{display:flex;align-items:center;gap:20px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:12px;margin-right:auto}
+.brand img{width:38px;height:38px;border-radius:9px;box-shadow:var(--shadow-plate)}
+.brand b{font-family:'Fraunces',serif;font-size:1.1rem;display:block}
+.brand small{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-on-ink-dim);letter-spacing:.08em;text-transform:uppercase;display:block}
+.nav nav{display:flex;gap:22px}
+.nav nav a{font-weight:600;font-size:.86rem;color:var(--text-on-ink-dim);transition:color .2s}
+.nav nav a:hover{color:var(--copper-bright)}
+.dial-switch{position:relative;width:64px;height:32px;border-radius:999px;border:1px solid var(--line-on-ink);background:var(--ink-2);cursor:pointer;display:flex;align-items:center;padding:3px}
+.dial-switch .puck{width:24px;height:24px;border-radius:50%;background:linear-gradient(155deg,var(--frost),var(--frost-dim));transition:transform .3s}
+html[data-theme="light"] .dial-switch .puck{transform:translateX(32px);background:linear-gradient(155deg,var(--copper-bright),var(--copper))}
+.dial-switch .lbl{position:absolute;font-family:'Space Mono',monospace;font-size:.56rem;color:var(--text-on-ink-dim)}
+.dial-switch .lbl.cold{left:8px}.dial-switch .lbl.warm{right:7px}
+
+/* Hero */
+.hero{padding:70px 0 50px;border-bottom:1px solid var(--line-on-ink);background:radial-gradient(1000px 500px at 80% -10%,color-mix(in oklab,var(--copper) 16%,transparent),transparent 65%)}
+.hero-content{max-width:760px}
+.hero h1{font-size:clamp(2.3rem,4.5vw,3.6rem)}
+.hero h1 i{color:var(--copper-bright);font-style:italic}
+.hero p{font-size:1.08rem;color:var(--text-on-ink-dim);max-width:58ch}
+.readouts{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.readout{font-family:'Space Mono',monospace;font-size:.78rem;border:1px solid var(--line-on-ink);padding:8px 12px;background:var(--ink-2);color:var(--text-on-ink-dim);border-radius:2px}
+.readout b{color:var(--frost)}
+
+/* App Grid */
+.sec-title{padding:70px 0 30px}
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;margin-bottom:80px}
+.app-card{background:var(--ink-2);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate);padding:28px;position:relative;display:flex;flex-direction:column;box-shadow:var(--shadow-plate);transition:border-color .2s,transform .2s}
+.app-card:hover{border-color:var(--copper-bright);transform:translateY(-3px)}
+.app-card::before,.app-card::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--copper);top:12px}
+.app-card::before{left:12px}.app-card::after{right:12px}
+.card-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.card-head img{width:64px;height:64px;border-radius:14px;border:1px solid var(--line-on-ink)}
+.card-head h2{font-size:1.45rem;margin:0 0 2px}
+.card-badge{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--frost);letter-spacing:.05em}
+.card-desc{font-size:.92rem;color:var(--text-on-ink-dim);margin-bottom:20px;flex-grow:1}
+
+/* QR Code & Badges Box */
+.qr-panel{background:color-mix(in oklab,var(--ink) 70%,transparent);border:1px solid var(--line-on-ink);border-radius:2px;padding:14px;margin-bottom:16px}
+.qr-title{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--text-on-ink-dim);text-align:center;margin-bottom:10px;text-transform:uppercase}
+.qr-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center}
+.qr-box img{width:100px;height:100px;background:#fff;padding:6px;border-radius:3px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.qr-lbl{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--frost);margin-top:4px;display:block}
+.store-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.s-btn{font-family:'Space Mono',monospace;font-size:.74rem;padding:9px;text-align:center;border:1px solid var(--line-on-ink);background:var(--ink-2);color:var(--text-on-ink);font-weight:700;border-radius:2px;transition:background .2s}
+.s-btn:hover{background:var(--copper);color:#180D05}
+.btn-open{display:block;text-align:center;padding:12px;background:var(--copper);color:#180D05;font-weight:700;font-size:.88rem;border-radius:2px;transition:background .2s}
+.btn-open:hover{background:var(--copper-bright)}
+.card-legal{display:flex;justify-content:space-between;padding-top:12px;margin-top:12px;border-top:1px solid var(--line-on-ink);font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-on-ink-dim)}
+.card-legal a:hover{color:var(--frost);text-decoration:underline}
+
+/* Compliance Table */
+.compliance-sec{background:var(--paper);color:var(--text-on-paper);padding:70px 0;border-top:1px solid var(--line-on-ink)}
+.compliance-sec .tag{color:var(--copper)} .compliance-sec .tag::before{background:var(--copper)}
+.table-wrap{overflow-x:auto;margin-top:24px}
+table{width:100%;border-collapse:collapse;font-size:.88rem;border:1px solid var(--line-on-paper)}
+th,td{padding:12px 14px;border:1px solid var(--line-on-paper);text-align:left}
+th{background:var(--paper-2);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+td a{color:var(--copper);font-family:'Space Mono',monospace;font-size:.78rem}
+td a:hover{text-decoration:underline}
+
+/* Footer */
+footer{background:#0E0B07;color:var(--text-on-ink-dim);padding:40px 0;border-top:1px solid var(--line-on-ink);font-family:'Space Mono',monospace;font-size:.78rem}
+.foot-wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:850px){.nav nav{display:none}.qr-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="assets/g-balancer/image_11.png" alt="Nitin Shah Studio icon">
+      <span><b>Nitin Shah Studio</b><small>Mobile Applications Portfolio</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#apps">Our Apps</a>
+      <a href="#compliance">Store Compliance</a>
+      <a href="apps/g-balancer/index.html">G-Balancer</a>
+      <a href="apps/g-balancer/support.html">Support</a>
+    </nav>
+    <button class="dial-switch" id="themeBtn" type="button" aria-label="Toggle theme">
+      <span class="lbl cold">C</span><span class="lbl warm">W</span><span class="puck"></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-content">
+      <p class="tag">DEVELOPER HUB · 4 MOBILE APPLICATIONS</p>
+      <h1>Four Precision Instruments.<br>One Unified <i>Standard</i>.</h1>
+      <p>Download our official suite of mobile applications directly from the App Store and Google Play using the QR codes or badges below. Every app runs 100% offline with zero cloud tracking and full store compliance.</p>
+      <div class="readouts">
+        <span class="readout"><b>4</b> Applications</span>
+        <span class="readout"><b>Culinary &amp; Travel</b> Suite</span>
+        <span class="readout"><b>Offline-First</b> Computing</span>
+        <span class="readout"><b>0</b> Accounts / Tracking</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="apps">
+    <div class="sec-title">
+      <p class="tag">SUITE CATALOGUE</p>
+      <h2>Applications Portfolio</h2>
+      <p style="color:var(--text-on-ink-dim);max-width:60ch">Each application operates independently with its own deep-linked Privacy Policy, Terms, and Support portal for store reviewers and users.</p>
+    </div>
+
+    <div class="app-grid">
+
+      <!-- APP 1: G-BALANCER -->
+      <article class="app-card">
+        <div class="card-head">
+          <img src="assets/g-balancer/image_11.png" alt="G-Balancer icon">
+          <div>
+            <span class="card-badge">FLAGSHIP · v2.4</span>
+            <h2>G-Balancer</h2>
+          </div>
+        </div>
+        <p class="card-desc">The visual recipe balancer for artisanal gelato, ice cream, sorbet, and kulfi. Features Quick Check diagnostics, auto-dosed stabilizers, overrun modeling, and legal nutrition labels.</p>
+        <div class="qr-panel">
+          <div class="qr-title">Scan on Desktop to Download</div>
+          <div class="qr-row">
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://apps.apple.com/app/id6447829101" alt="App Store QR">
+              <span class="qr-lbl">iOS App Store</span>
+            </div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://play.google.com/store/apps/details?id=com.gbalancer.app" alt="Google Play QR">
+              <span class="qr-lbl">Google Play</span>
+            </div>
+          </div>
+        </div>
+        <div class="store-btns">
+          <a class="s-btn" href="https://apps.apple.com/app/id6447829101" target="_blank" rel="noopener">🍏 iOS Store</a>
+          <a class="s-btn" href="https://play.google.com/store/apps/details?id=com.gbalancer.app" target="_blank" rel="noopener">🤖 Android</a>
+        </div>
+        <a class="btn-open" href="apps/g-balancer/index.html">Open G-Balancer Workbench &rarr;</a>
+        <div class="card-legal">
+          <a href="apps/g-balancer/privacy.html">Privacy Policy</a>
+          <a href="apps/g-balancer/terms.html">Terms &amp; EULA</a>
+          <a href="apps/g-balancer/support.html">Support</a>
+        </div>
+      </article>
+
+      <!-- APP 2: G-FORMULATOR -->
+      <article class="app-card">
+        <div class="card-head">
+          <img src="assets/g-formulator/image_11.png" alt="G-Formulator icon">
+          <div>
+            <span class="card-badge">FOOD SCIENCE</span>
+            <h2>G-Formulator</h2>
+          </div>
+        </div>
+        <p class="card-desc">Advanced food formulation and recipe scaling engine. Balance dairy solids, sugars, fats, and customized commercial production parameters with precision calculations.</p>
+        <div class="qr-panel">
+          <div class="qr-title">Scan on Desktop to Download</div>
+          <div class="qr-row">
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://apps.apple.com/app/id6447829102" alt="App Store QR">
+              <span class="qr-lbl">iOS App Store</span>
+            </div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://play.google.com/store/apps/details?id=com.gformulator.app" alt="Google Play QR">
+              <span class="qr-lbl">Google Play</span>
+            </div>
+          </div>
+        </div>
+        <div class="store-btns">
+          <a class="s-btn" href="https://apps.apple.com/app/id6447829102" target="_blank" rel="noopener">🍏 iOS Store</a>
+          <a class="s-btn" href="https://play.google.com/store/apps/details?id=com.gformulator.app" target="_blank" rel="noopener">🤖 Android</a>
+        </div>
+        <a class="btn-open" href="apps/g-formulator/index.html">Open G-Formulator Workbench &rarr;</a>
+        <div class="card-legal">
+          <a href="apps/g-formulator/privacy.html">Privacy Policy</a>
+          <a href="apps/g-formulator/terms.html">Terms &amp; EULA</a>
+          <a href="apps/g-formulator/support.html">Support</a>
+        </div>
+      </article>
+
+      <!-- APP 3: DOUGHPROOFPRO -->
+      <article class="app-card">
+        <div class="card-head">
+          <img src="assets/doughproofpro/image_11.png" alt="DoughProofPro icon">
+          <div>
+            <span class="card-badge">BAKERY SCIENCE</span>
+            <h2>DoughProofPro</h2>
+          </div>
+        </div>
+        <p class="card-desc">Baker's mathematical dough calculation, hydration scaling, preferment partitions, desired dough temperature (DDT) friction compensation, and fermentation modeling.</p>
+        <div class="qr-panel">
+          <div class="qr-title">Scan on Desktop to Download</div>
+          <div class="qr-row">
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://apps.apple.com/app/id6447829103" alt="App Store QR">
+              <span class="qr-lbl">iOS App Store</span>
+            </div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://play.google.com/store/apps/details?id=com.doughproofpro.app" alt="Google Play QR">
+              <span class="qr-lbl">Google Play</span>
+            </div>
+          </div>
+        </div>
+        <div class="store-btns">
+          <a class="s-btn" href="https://apps.apple.com/app/id6447829103" target="_blank" rel="noopener">🍏 iOS Store</a>
+          <a class="s-btn" href="https://play.google.com/store/apps/details?id=com.doughproofpro.app" target="_blank" rel="noopener">🤖 Android</a>
+        </div>
+        <a class="btn-open" href="apps/doughproofpro/index.html">Open DoughProofPro Workbench &rarr;</a>
+        <div class="card-legal">
+          <a href="apps/doughproofpro/privacy.html">Privacy Policy</a>
+          <a href="apps/doughproofpro/terms.html">Terms &amp; EULA</a>
+          <a href="apps/doughproofpro/support.html">Support</a>
+        </div>
+      </article>
+
+      <!-- APP 4: ATTRACTIONFINDER -->
+      <article class="app-card">
+        <div class="card-head">
+          <img src="assets/attractionfinder/image_11.png" alt="AttractionFinder icon">
+          <div>
+            <span class="card-badge">TRAVEL &amp; EXPLORATION</span>
+            <h2>AttractionFinder</h2>
+          </div>
+        </div>
+        <p class="card-desc">Comprehensive itinerary planning, points of interest exploration, cultural discovery, and route optimization tool for global and local travel destinations.</p>
+        <div class="qr-panel">
+          <div class="qr-title">Scan on Desktop to Download</div>
+          <div class="qr-row">
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://apps.apple.com/app/id6447829104" alt="App Store QR">
+              <span class="qr-lbl">iOS App Store</span>
+            </div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://play.google.com/store/apps/details?id=com.attractionfinder.app" alt="Google Play QR">
+              <span class="qr-lbl">Google Play</span>
+            </div>
+          </div>
+        </div>
+        <div class="store-btns">
+          <a class="s-btn" href="https://apps.apple.com/app/id6447829104" target="_blank" rel="noopener">🍏 iOS Store</a>
+          <a class="s-btn" href="https://play.google.com/store/apps/details?id=com.attractionfinder.app" target="_blank" rel="noopener">🤖 Android</a>
+        </div>
+        <a class="btn-open" href="apps/attractionfinder/index.html">Open AttractionFinder Workbench &rarr;</a>
+        <div class="card-legal">
+          <a href="apps/attractionfinder/privacy.html">Privacy Policy</a>
+          <a href="apps/attractionfinder/terms.html">Terms &amp; EULA</a>
+          <a href="apps/attractionfinder/support.html">Support</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Store Compliance Deep-Linking Guide -->
+  <section class="compliance-sec" id="compliance">
+    <div class="wrap">
+      <p class="tag">STORE VERIFICATION &amp; COMPLIANCE</p>
+      <h2>Deep-Linking Matrix for Store Submission</h2>
+      <p style="color:var(--text-on-paper-dim);max-width:65ch">Use these exact URLs in App Store Connect and Google Play Console[span_0](start_span)[span_0](end_span). Both review teams require direct links without redirects or homepages.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Showcase Page</th>
+              <th>Privacy Policy (Direct)</th>
+              <th>Support URL (Direct)</th>
+              <th>Data Deletion URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>G-Balancer</strong></td>
+              <td><a href="apps/g-balancer/index.html">/apps/g-balancer/</a></td>
+              <td><a href="apps/g-balancer/privacy.html">/apps/g-balancer/privacy.html</a></td>
+              <td><a href="apps/g-balancer/support.html">/apps/g-balancer/support.html</a></td>
+              <td><a href="apps/g-balancer/support.html#data-deletion">.../support.html#data-deletion</a></td>
+            </tr>
+            <tr>
+              <td><strong>G-Formulator</strong></td>
+              <td><a href="apps/g-formulator/index.html">/apps/g-formulator/</a></td>
+              <td><a href="apps/g-formulator/privacy.html">/apps/g-formulator/privacy.html</a></td>
+              <td><a href="apps/g-formulator/support.html">/apps/g-formulator/support.html</a></td>
+              <td><a href="apps/g-formulator/support.html#data-deletion">.../support.html#data-deletion</a></td>
+            </tr>
+            <tr>
+              <td><strong>DoughProofPro</strong></td>
+              <td><a href="apps/doughproofpro/index.html">/apps/doughproofpro/</a></td>
+              <td><a href="apps/doughproofpro/privacy.html">/apps/doughproofpro/privacy.html</a></td>
+              <td><a href="apps/doughproofpro/support.html">/apps/doughproofpro/support.html</a></td>
+              <td><a href="apps/doughproofpro/support.html#data-deletion">.../support.html#data-deletion</a></td>
+            </tr>
+            <tr>
+              <td><strong>AttractionFinder</strong></td>
+              <td><a href="apps/attractionfinder/index.html">/apps/attractionfinder/</a></td>
+              <td><a href="apps/attractionfinder/privacy.html">/apps/attractionfinder/privacy.html</a></td>
+              <td><a href="apps/attractionfinder/support.html">/apps/attractionfinder/support.html</a></td>
+              <td><a href="apps/attractionfinder/support.html#data-deletion">.../support.html#data-deletion</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-wrap">
+    <span>&copy; 2026 NITIN SHAH. ALL RIGHTS RESERVED.</span>
+    <span>AHMEDABAD, GUJARAT, INDIA &middot; NITIN SHAH APPS</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  function apply(t){root.setAttribute('data-theme',t);if(meta)meta.setAttribute('content',t==='dark'?'#15110C':'#F4EEE0');}
+  var saved=null;try{saved=localStorage.getItem('gb_site_theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);
+    try{localStorage.setItem('gb_site_theme',t);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
