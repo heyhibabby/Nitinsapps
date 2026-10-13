@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AttractionFinder — Smart Travel Itinerary &amp; Attraction Discovery App | Points of Interest, Routes &amp; Budget Planner</title>
+<meta name="description" content="AttractionFinder is an intuitive visual itinerary planner and travel discovery workbench — curated points of interest database, Quick Check daily pacing, transit time estimation, walking route optimization, ticket budgeting, and 18 languages.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.g-balancer.com/apps/attractionfinder/">
+<meta name="theme-color" content="#15110C">
+<link rel="icon" href="../../assets/attractionfinder/image_11.png">
+<link rel="apple-touch-icon" href="../../assets/attractionfinder/image_11.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.g-balancer.com/apps/attractionfinder/">
+<meta property="og:site_name" content="AttractionFinder">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="AttractionFinder — Smart Travel Itinerary &amp; Point-of-Interest Discovery">
+<meta property="og:description" content="Plan trips, map points of interest, calculate routes, track budgets, and explore cultural landmarks offline in 18 languages.">
+<meta property="og:image" content="../../assets/attractionfinder/image_10.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AttractionFinder — Smart Travel Itinerary &amp; Point-of-Interest Discovery">
+<meta name="twitter:description" content="Curated landmark database, route optimization, daily pacing diagnostics, and expense budgets — in 18 languages. No account needed.">
+<meta name="twitter:image" content="../../assets/attractionfinder/image_10.png">
+<meta name="keywords" content="travel planner app, itinerary builder, attractions wiki, tourist spot guide, points of interest finder, travel route optimization, offline city guide, travel budget calculator">
+<meta name="author" content="Nitin Shah">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AttractionFinder — Travel Itinerary & Discovery","alternateName":"AttractionFinder","applicationCategory":"TravelApplication","operatingSystem":"iOS, Android","url":"https://www.g-balancer.com/apps/attractionfinder/","image":"../../assets/attractionfinder/image_10.png","description":"Visual itinerary planner, points of interest exploration, route optimization, daily pacing diagnostics, and travel budgeting in 18 languages.","featureList":["Points of interest & landmark database","Multi-day itinerary sequencing","Walking distance & transit time estimation","Crowd levels & admission window diagnostics","Budget, currency & ticket calculator","Geographic clustering & walking route optimization","18 languages","No account required, works offline"],"inLanguage":["en","hi","gu","mr","ta","kn","te","bn","pa","es","fr","de","it","pt","zh","ja","ar","ru"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},"publisher":{"@type":"Organization","name":"AttractionFinder","founder":{"@type":"Person","name":"Nitin Shah"},"address":{"@type":"PostalAddress","addressLocality":"Ahmedabad","addressRegion":"Gujarat","addressCountry":"IN"}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Does AttractionFinder need an internet connection or an account?","acceptedAnswer":{"@type":"Answer","text":"No. The app runs completely on your device, with no account sign-up and no cloud sync. Your itineraries and saved destinations stay in local storage."}},
+  {"@type":"Question","name":"Can I export and share my travel itineraries?","acceptedAnswer":{"@type":"Answer","text":"Yes — export your daily itineraries, travel timelines, and budget summaries to PDF, Excel/CSV, or JSON at any time."}},
+  {"@type":"Question","name":"How does transit time and route pacing work?","acceptedAnswer":{"@type":"Answer","text":"AttractionFinder evaluates geographic distances between scheduled sights and computes realistic transit and walking buffers to prevent overcrowded days."}},
+  {"@type":"Question","name":"Can I use AttractionFinder for international travel?","acceptedAnswer":{"@type":"Answer","text":"Yes. It features 18 built-in languages, flexible currency settings, and offline guide support."}}
+]}
+</script>
+<style>
+/* ============================================================
+   TOKENS — "The Bench"
+   ============================================================ */
+:root{
+  --ink:#15110C;
+  --ink-2:#241D14;
+  --paper:#F4EEE0;
+  --paper-2:#EAE1CC;
+  --line-on-ink:rgba(244,238,224,.14);
+  --line-on-paper:rgba(21,17,12,.14);
+  --copper:#B5602C;
+  --copper-bright:#D98A4D;
+  --frost:#7FD6DE;
+  --frost-dim:#4F9AA3;
+  --cream:#F4EEE0;
+  --text-on-ink:#F4EEE0;
+  --text-on-ink-dim:#B8AE9B;
+  --text-on-paper:#1E180F;
+  --text-on-paper-dim:#5B5140;
+  --radius-plate:2px;
+  --radius-pin:3px;
+  --shadow-deep:0 40px 90px -40px rgba(0,0,0,.65);
+  --shadow-plate:0 2px 0 rgba(0,0,0,.25), 0 22px 46px -26px rgba(0,0,0,.55);
+}
+html[data-theme="light"]{
+  --ink:#F4EEE0; --ink-2:#EAE1CC;
+  --paper:#15110C; --paper-2:#241D14;
+  --line-on-ink:rgba(21,17,12,.14);
+  --line-on-paper:rgba(244,238,224,.14);
+  --text-on-ink:#1E180F; --text-on-ink-dim:#5B5140;
+  --text-on-paper:#F4EEE0; --text-on-paper-dim:#B8AE9B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--ink);color:var(--text-on-ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.08;letter-spacing:-.015em;margin:0 0 .5em;font-weight:600}
+a{color:inherit}
+.wrap{width:min(1180px,90vw);margin:0 auto}
+.mono{font-family:'Space Mono',ui-monospace,monospace}
+.on-ink{background:var(--ink);color:var(--text-on-ink)}
+.on-paper{background:var(--paper);color:var(--text-on-paper)}
+.tag{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--copper-bright);display:inline-flex;align-items:center;gap:8px;margin:0 0 16px}
+.tag::before{content:"";width:18px;height:1px;background:var(--copper-bright)}
+.on-paper .tag{color:var(--copper)}
+.on-paper .tag::before{background:var(--copper)}
+
+/* ---------------- header ---------------- */
+header{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  background:color-mix(in oklab,var(--ink) 82%,transparent);border-bottom:1px solid var(--line-on-ink)}
+.nav{display:flex;align-items:center;gap:22px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand img{width:38px;height:38px;border-radius:9px;box-shadow:var(--shadow-plate)}
+.brand b{display:block;font-family:'Fraunces',serif;font-size:1.08rem;letter-spacing:-.01em;font-weight:600}
+.brand small{display:block;color:var(--text-on-ink-dim);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Space Mono',monospace}
+.nav nav{display:flex;gap:26px}
+.nav nav a{text-decoration:none;font-weight:600;font-size:.86rem;color:var(--text-on-ink-dim);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav nav a:hover{color:var(--copper-bright);border-color:var(--copper-bright)}
+@media(max-width:900px){.nav nav{display:none}}
+
+/* dial-switch */
+.dial-switch{position:relative;width:64px;height:32px;border-radius:999px;border:1px solid var(--line-on-ink);
+  background:var(--ink-2);cursor:pointer;flex:0 0 auto;display:flex;align-items:center;padding:3px}
+.dial-switch .puck{width:24px;height:24px;border-radius:50%;background:linear-gradient(155deg,var(--frost),var(--frost-dim));
+  box-shadow:0 2px 8px rgba(0,0,0,.4);transition:transform .32s cubic-bezier(.6,-0.28,.4,1.34)}
+html[data-theme="light"] .dial-switch .puck{transform:translateX(32px);background:linear-gradient(155deg,var(--copper-bright),var(--copper))}
+.dial-switch .lbl{position:absolute;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.06em;color:var(--text-on-ink-dim)}
+.dial-switch .lbl.cold{left:8px}
+.dial-switch .lbl.warm{right:7px}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding:64px 0 0;background:
+  radial-gradient(1100px 620px at 78% -10%, color-mix(in oklab,var(--copper) 16%, transparent), transparent 60%),
+  repeating-linear-gradient(0deg, transparent 0 39px, var(--line-on-ink) 39px 40px),
+  repeating-linear-gradient(90deg, transparent 0 39px, var(--line-on-ink) 39px 40px);
+  overflow:hidden}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center;padding-bottom:56px}
+.plate-num{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text-on-ink-dim);letter-spacing:.06em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.plate-num i{width:8px;height:8px;border-radius:50%;background:var(--frost);display:inline-block;box-shadow:0 0 10px var(--frost)}
+.hero h1{font-size:clamp(2.35rem,4.6vw,3.7rem);font-weight:600;max-width:15ch}
+.hero h1 i{font-style:italic;font-weight:500;color:var(--copper-bright)}
+.lede{font-size:1.08rem;color:var(--text-on-ink-dim);max-width:52ch}
+.readouts{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
+.readout{font-family:'Space Mono',monospace;font-size:.78rem;border:1px solid var(--line-on-ink);border-radius:3px;
+  padding:8px 12px;color:var(--text-on-ink-dim);background:color-mix(in oklab,var(--ink-2) 60%,transparent)}
+.readout b{color:var(--frost);font-weight:700}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:3px;text-decoration:none;font-weight:700;
+  font-size:.92rem;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;font-family:'Manrope',sans-serif}
+.btn-primary{background:var(--copper);color:#180D05;box-shadow:0 16px 34px -16px color-mix(in oklab,var(--copper) 70%,transparent)}
+.btn-primary:hover{background:var(--copper-bright);transform:translateY(-2px)}
+.btn-ghost{background:transparent;border-color:var(--line-on-ink);color:var(--text-on-ink)}
+.btn-ghost:hover{border-color:var(--frost);color:var(--frost)}
+
+.instrument{position:relative;display:flex;flex-direction:column;gap:18px;align-items:center}
+.gauge-shot{width:min(360px,78vw);padding:14px}
+.gauge-shot img{width:100%;display:block;border-radius:2px}
+.gauge-caption{flex-basis:100%;margin-top:4px;text-align:center;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.05em;color:var(--text-on-ink-dim)}
+.gauge-caption b{color:var(--frost)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px;text-align:center}.plate-num{justify-content:center}
+  .lede{margin-inline:auto}.cta{justify-content:center}}
+
+/* ---------------- duality ---------------- */
+.duality{display:grid;grid-template-columns:1fr 1fr}
+.duality-panel{padding:90px 6vw;position:relative}
+.duality-panel.hot{background:linear-gradient(165deg,#1D130A,#150E08);border-right:1px solid var(--line-on-ink)}
+.duality-panel.cold{background:linear-gradient(165deg,#0B1A1C,#0B1310)}
+.duality-panel .tag{margin-bottom:22px}
+.duality-panel.hot .tag,.duality-panel.hot .tag::before{color:var(--copper-bright)}
+.duality-panel.cold .tag,.duality-panel.cold .tag::before{color:var(--frost)}
+.duality-panel h3{font-size:1.7rem;color:var(--text-on-ink)}
+.duality-panel p{color:var(--text-on-ink-dim);max-width:38ch}
+.duality-panel img{width:100%;border-radius:var(--radius-plate);border:1px solid var(--line-on-ink);margin-top:28px;box-shadow:var(--shadow-plate)}
+@media(max-width:860px){.duality{grid-template-columns:1fr}.duality-panel{padding:64px 8vw}.duality-panel.hot{border-right:none;border-bottom:1px solid var(--line-on-ink)}}
+
+/* ---------------- ledger ---------------- */
+.ledger{border-top:1px solid var(--line-on-paper)}
+.ledger-row{display:grid;grid-template-columns:64px 1fr 1.6fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line-on-paper);align-items:baseline}
+.ledger-row .no{font-family:'Space Mono',monospace;color:var(--copper);font-size:.95rem;font-weight:700}
+.ledger-row h3{font-size:1.14rem;margin:0}
+.ledger-row p{margin:0;color:var(--text-on-paper-dim);font-size:.95rem;max-width:56ch}
+@media(max-width:760px){.ledger-row{grid-template-columns:32px 1fr;grid-template-rows:auto auto}.ledger-row p{grid-column:1/-1}}
+
+/* ---------------- quick check split ---------------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:34px}}
+.split.reverse .plate{order:2}
+.plate{position:relative;padding:26px;background:var(--ink-2);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate)}
+.on-paper .plate{background:var(--paper-2);border-color:var(--line-on-paper)}
+.plate::before,.plate::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--copper);top:14px}
+.plate::before{left:14px}.plate::after{right:14px}
+.plate img{width:100%;max-width:340px;display:block;margin:0 auto;border-radius:2px;border:1px solid var(--line-on-ink);box-shadow:var(--shadow-plate)}
+.checks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:0}
+.checks li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line-on-ink)}
+.on-paper .checks li{border-color:var(--line-on-paper)}
+.checks li .no{font-family:'Space Mono',monospace;color:var(--frost);font-size:.8rem;flex:0 0 auto;padding-top:2px}
+.checks li span{color:var(--text-on-ink-dim);font-size:.95rem}
+.on-paper .checks li span{color:var(--text-on-paper-dim)}
+.checks li b{color:var(--text-on-ink)}
+.on-paper .checks li b{color:var(--text-on-paper)}
+
+/* ---------------- video ---------------- */
+.video-sec{padding:110px 0;text-align:center;position:relative;
+  background:radial-gradient(900px 500px at 50% 0%,color-mix(in oklab,var(--frost) 8%,transparent),transparent 60%)}
+.video-sec p{color:var(--text-on-ink-dim);max-width:56ch;margin:0 auto 36px}
+.video-frame{max-width:880px;margin:0 auto;border-radius:var(--radius-plate);overflow:hidden;border:1px solid var(--line-on-ink);box-shadow:var(--shadow-deep);position:relative}
+.video-frame video{width:100%;display:block}
+.corner-pin{position:absolute;width:16px;height:16px;z-index:2}
+.corner-pin svg{width:100%;height:100%}
+.video-frame .cp-tl{top:8px;left:8px}.video-frame .cp-tr{top:8px;right:8px;transform:scaleX(-1)}
+
+/* ---------------- gallery rail ---------------- */
+.rail-outer{background:var(--ink-2);border-block:1px solid var(--line-on-ink);padding:90px 0}
+.rail{display:flex;gap:26px;overflow-x:auto;padding:6px 4vw 20px;scroll-snap-type:x mandatory}
+.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:start;text-align:left;position:relative}
+.rail .frame{position:relative;padding:10px;background:var(--ink);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate)}
+.rail .frame::before,.rail .frame::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--copper);top:8px}
+.rail .frame::before{left:8px}.rail .frame::after{right:8px}
+.rail img{height:420px;display:block;border-radius:1px}
+.rail figcaption{margin-top:14px;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text-on-ink-dim);letter-spacing:.03em}
+.rail figcaption b{color:var(--frost);margin-right:8px}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:var(--copper);border-radius:10px}
+.rail::-webkit-scrollbar-track{background:transparent}
+
+/* ---------------- languages ---------------- */
+.langs{display:flex;flex-wrap:wrap;gap:10px}
+.langs span{font-family:'Space Mono',monospace;background:transparent;border:1px solid var(--line-on-paper);border-radius:2px;
+  padding:8px 13px;font-weight:400;font-size:.82rem;color:var(--text-on-paper-dim)}
+
+/* ---------------- store placeholders ---------------- */
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:10px}
+.store-card{background:var(--paper-2);border:1px solid var(--line-on-paper);border-radius:var(--radius-plate);padding:34px 20px;text-align:center}
+.qr-slot{width:120px;height:120px;margin:0 auto 20px;border:1px dashed var(--line-on-paper);border-radius:4px;
+  display:flex;align-items:center;justify-content:center}
+.qr-slot span{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.06em;line-height:1.5;color:var(--text-on-paper-dim)}
+.qr-slot img{width:100%;height:100%;object-fit:contain;border-radius:2px}
+.store-card h3{font-size:1.05rem;margin:0 0 6px}
+.store-tag{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--copper);letter-spacing:.05em}
+@media(max-width:760px){.store-grid{grid-template-columns:1fr;max-width:280px;margin-inline:auto}}
+
+/* ---------------- faq ---------------- */
+.faq-item{border-top:1px solid var(--line-on-ink)}
+.faq-item:last-child{border-bottom:1px solid var(--line-on-ink)}
+details{padding:0}
+details summary{cursor:pointer;font-weight:600;list-style:none;padding:22px 0;display:flex;justify-content:space-between;gap:20px;font-size:1.02rem}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--copper-bright);font-family:'Space Mono',monospace;font-size:1.2rem;flex:0 0 auto}
+details[open] summary::after{content:"–"}
+details p{color:var(--text-on-ink-dim);margin:0 0 22px;font-size:.96rem;max-width:66ch}
+
+/* ---------------- cta band ---------------- */
+.band-sec{padding:100px 0}
+.band{background:var(--ink-2);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate);padding:64px 42px;text-align:center;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 50% 0%,color-mix(in oklab,var(--copper) 18%,transparent),transparent 70%)}
+.band>*{position:relative}
+.band h2{max-width:22ch;margin-inline:auto}
+.band p{color:var(--text-on-ink-dim);max-width:52ch;margin:0 auto 30px}
+
+/* ---------------- footer ---------------- */
+footer{background:#0E0B07;color:var(--text-on-ink-dim);padding:70px 0 34px;border-top:1px solid var(--line-on-ink)}
+footer a{color:var(--frost);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid h4{color:var(--text-on-ink);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 16px;font-weight:400}
+.foot-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:.92rem}
+.legal{margin-top:40px;padding-top:22px;border-top:1px solid var(--line-on-ink);font-size:.78rem;color:var(--text-on-ink-dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace}
+
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--copper);color:#180D05;padding:12px 18px;
+  z-index:100;border-radius:3px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:16px;top:16px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<a href="#top" class="skip-link">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="../../assets/attractionfinder/image_11.png" alt="AttractionFinder app icon" width="38" height="38" loading="eager" decoding="async">
+      <span><b>AttractionFinder</b><small>Travel Itinerary &amp; Discovery Lab</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="../../index.html">&larr; All Apps</a>
+      <a href="#features">Ledger</a>
+      <a href="#quickcheck">Quick Check</a>
+      <a href="#gallery">Screens</a>
+      <a href="#languages">Languages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="dial-switch" id="themeBtn" type="button" aria-label="Switch between cold and warm theme">
+      <span class="lbl cold">C</span><span class="lbl warm">W</span><span class="puck"></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="plate-num"><i></i>CITIES · LANDMARKS · ITINERARIES · ATTRACTIONS</p>
+      <h1>Map the journey<br>before the itinerary <i>overwhelms</i> you.</h1>
+      <p class="lede">AttractionFinder turns travel planning into a live dashboard — points of interest, transit times, crowd pacing, budgets, opening hours, and daily walking routes calibrated to your travel style.</p>
+      <div class="readouts">
+        <span class="readout"><b>1,000+</b> Curated spots</span>
+        <span class="readout"><b>Multi-day</b> Route engine</span>
+        <span class="readout"><b>18</b> languages</span>
+        <span class="readout"><b>0</b> accounts required</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#features">Read the ledger</a>
+        <a class="btn btn-ghost" href="#gallery">Open the workbench →</a>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="plate gauge-shot"><img src="../../assets/attractionfinder/gauge_sweet.png" alt="Daily itinerary pacing &amp; transit buffer gauge" loading="eager" fetchpriority="high" decoding="async"></div>
+      <div class="plate gauge-shot"><img src="../../assets/attractionfinder/gauge_scoop.png" alt="Budget &amp; walking schedule balance gauge" loading="eager" fetchpriority="high" decoding="async"></div>
+      <p class="gauge-caption">Live telemetry from the <b>Itinerary</b> tab — smooth travel, every day.</p>
+    </div>
+  </div>
+</section>
+
+<section class="duality">
+  <div class="duality-panel hot reveal">
+    <p class="tag">DAY ITINERARY &amp; SIGHTSEEING</p>
+    <h3>Timing and stops, calculated to the minute.</h3>
+    <p>Opening hours, landmark visit durations, and meal stops — dynamically adjusted across each day so you experience more without rushing.</p>
+    <img src="../../assets/attractionfinder/image_5.png" alt="Daily itinerary timeline screen" loading="lazy" decoding="async">
+  </div>
+  <div class="duality-panel cold reveal">
+    <p class="tag">ROUTE OPTIMIZATION &amp; LOGISTICS</p>
+    <h3>Transit lines and walking, kept in balance.</h3>
+    <p>Metro lines, walking buffers, and geographic clustering ensure you never waste travel days criss-crossing the city.</p>
+    <img src="../../assets/attractionfinder/image_2.png" alt="Transit route and geographic clustering screen" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="pad on-paper" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">THE LEDGER</p>
+      <h2>Twelve stations, one seamless journey</h2>
+      <p>Every control updates the same travel plan — add an attraction, adjust a visiting time, or split days and your whole route, budget, and walking schedule update together.</p>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-row"><span class="no">01</span><h3>Destination &amp; trip duration</h3><p>Configure trip dates, arrival hubs, hotel bases, preferred daily walking limits, and travel pace from leisurely to intensive.</p></div>
+      <div class="ledger-row"><span class="no">02</span><h3>Points of interest database</h3><p>Comprehensive catalog of historic monuments, museums, viewpoints, cultural spots, and local culinary landmarks.</p></div>
+      <div class="ledger-row"><span class="no">03</span><h3>Day-by-day itinerary sequencing</h3><p>Organize attractions chronologically across morning, afternoon, and evening segments with realistic visit allocations.</p></div>
+      <div class="ledger-row"><span class="no">04</span><h3>Transit &amp; walking times</h3><p>Point-to-point transit calculations incorporating walking segments, metro lines, and taxi transfer estimates.</p></div>
+      <div class="ledger-row"><span class="no">05</span><h3>Opening hours &amp; admission</h3><p>Audits closing days, peak admission windows, and time-slot reservations so you never encounter closed gates.</p></div>
+      <div class="ledger-row"><span class="no">06</span><h3>Budget &amp; currency planner</h3><p>Track entry fees, transit fares, meals, and emergency buffers with automated currency conversion and category subtotals.</p></div>
+      <div class="ledger-row"><span class="no">07</span><h3>Quick Check diagnostics</h3><p>Evaluates day pace, transit fatigue, and schedule balance before you step foot out of your hotel.</p></div>
+      <div class="ledger-row"><span class="no">08</span><h3>Key metrics dashboard</h3><p>Live readouts for daily walking distance, budgeted spend, scheduled stops, and resting intervals at a glance.</p></div>
+      <div class="ledger-row"><span class="no">09</span><h3>Geographic clustering score</h3><p>Groups neighboring sights automatically to minimize transit fatigue and optimize walking routes.</p></div>
+      <div class="ledger-row"><span class="no">10</span><h3>Tickets &amp; emergency info</h3><p>Consolidate e-tickets, reservation confirmation numbers, local emergency contacts, and consulate details in one secure card.</p></div>
+      <div class="ledger-row"><span class="no">11</span><h3>18 languages, dual themes</h3><p>Multilingual travel dictionary, landmark names, and itinerary reports in light and dark instrument panel themes.</p></div>
+      <div class="ledger-row"><span class="no">12</span><h3>Export &amp; offline sharing</h3><p>Export print-ready daily guides, timetables, and offline maps to PDF, Excel/CSV, and JSON directly on your device.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="quickcheck">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="tag">SIGNATURE STATION</p>
+        <h2>Quick Check audits your day before you step out</h2>
+        <p class="lede">Instead of getting exhausted by overpacked schedules, Quick Check analyzes your daily route against realistic transit times and walking limits.</p>
+        <ul class="checks">
+          <li><span class="no mono">01</span><span><b>Pacing &amp; walking distance</b> — verified against your personal daily stamina target.</span></li>
+          <li><span class="no mono">02</span><span><b>Admission &amp; opening hours</b> — warns you of holiday closures and timed-entry deadlines.</span></li>
+          <li><span class="no mono">03</span><span><b>Daily budget allocation</b> — tracks ticket entry fees, transit tickets, and meals.</span></li>
+          <li><span class="no mono">04</span><span><b>Geographic clustering</b> — flags unnecessary back-and-forth transit between distant districts.</span></li>
+        </ul>
+      </div>
+      <div class="reveal plate"><img src="../../assets/attractionfinder/image_3.png" alt="Quick Check screen with itinerary pacing diagnostics" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<section class="video-sec on-ink">
+  <div class="wrap">
+    <p class="tag">WALKTHROUGH</p>
+    <h2>See AttractionFinder in action</h2>
+    <p>From city selection and landmark clustering to route optimization and budget tracking — in one continuous flow.</p>
+    <div class="video-frame">
+      <span class="corner-pin cp-tl"><svg viewBox="0 0 16 16"><path d="M1 15V1h14" stroke="var(--copper)" stroke-width="2" fill="none"/></svg></span>
+      <span class="corner-pin cp-tr"><svg viewBox="0 0 16 16"><path d="M1 15V1h14" stroke="var(--copper)" stroke-width="2" fill="none"/></svg></span>
+      <video controls preload="none" poster="../../assets/attractionfinder/image_10.png">
+        <source src="../../assets/attractionfinder/video.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="rail-outer" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">ON THE BENCH</p>
+      <h2>Every screen, built for explorers</h2>
+      <p>Precision instruments from the same unified workspace — itineraries, route optimization, budgets, and landmark discovery.</p>
+    </div>
+  </div>
+  <div class="rail">
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_3.png" alt="Quick Check diagnostics" loading="lazy" decoding="async"></div><figcaption><b>FIG. 01</b>QUICK CHECK</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_8.png" alt="Budget and ticket expense logs" loading="lazy" decoding="async"></div><figcaption><b>FIG. 02</b>BUDGET &amp; EXPENSE LOGS</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_5.png" alt="Daily itinerary timeline" loading="lazy" decoding="async"></div><figcaption><b>FIG. 03</b>ITINERARY TIMELINE</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_6.png" alt="Key metrics dashboard with pacing gauges" loading="lazy" decoding="async"></div><figcaption><b>FIG. 04</b>KEY METRICS DASHBOARD</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_9.png" alt="Themes and language selection" loading="lazy" decoding="async"></div><figcaption><b>FIG. 05</b>THEMES &amp; LANGUAGES</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_2.png" alt="Destination setup and transit routes" loading="lazy" decoding="async"></div><figcaption><b>FIG. 06</b>DESTINATION &amp; TRANSIT</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_7.png" alt="Geographic clustering and walking indices" loading="lazy" decoding="async"></div><figcaption><b>FIG. 07</b>CLUSTERING &amp; INDICES</figcaption></figure>
+    <figure><div class="frame"><img src="../../assets/attractionfinder/image_4.png" alt="Attractions and landmark directory" loading="lazy" decoding="async"></div><figcaption><b>FIG. 08</b>ATTRACTIONS DIRECTORY</figcaption></figure>
+  </div>
+</section>
+
+<section class="pad on-paper" id="languages">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="tag">MULTILINGUAL</p>
+        <h2>Works in the language of your travels</h2>
+        <p class="lede">Interface, landmark names, transit glossaries, and exported travel guides in 18 international languages.</p>
+        <div class="langs" style="margin-top:22px">
+          <span>English</span><span>हिन्दी</span><span>ગુજરાતી</span><span>મરાઠી</span><span>தமிழ்</span><span>ಕನ್ನಡ</span><span>తెలుగు</span><span>বাংলা</span><span>ਪੰਜਾਬੀ</span><span>Español</span><span>Français</span><span>Deutsch</span><span>Italiano</span><span>Português</span><span>中文</span><span>日本語</span><span>العربية</span><span>Русский</span>
+        </div>
+      </div>
+      <div class="reveal plate"><img src="../../assets/attractionfinder/image_9.png" alt="AttractionFinder language and theme settings" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad on-paper" id="stores">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">AVAILABILITY</p>
+      <h2>Coming soon to your app store</h2>
+      <p>Scan the code from your preferred store the moment AttractionFinder goes live.</p>
+    </div>
+    <div class="store-grid reveal">
+      <div class="store-card">
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>App Store</h3>
+        <span class="store-tag">iOS</span>
+      </div>
+      <div class="store-card">
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>Google Play</h3>
+        <span class="store-tag">Android</span>
+      </div>
+      <div class="store-card">
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>Galaxy Store</h3>
+        <span class="store-tag">Samsung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad on-ink" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">GOOD TO KNOW</p>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item"><details open><summary>Does AttractionFinder need an internet connection or an account?<span></span></summary><p>No. The app runs completely on your device, with no account sign-up and no cloud sync. Your itineraries and saved destinations stay in local storage.</p></details></div>
+      <div class="faq-item"><details><summary>Can I export and share my travel itineraries?<span></span></summary><p>Yes — export your daily itineraries, travel timelines, and budget summaries to PDF, Excel/CSV, or JSON at any time.</p></details></div>
+      <div class="faq-item"><details><summary>How does transit time and route pacing work?<span></span></summary><p>AttractionFinder evaluates geographic distances between scheduled sights and computes realistic transit and walking buffers to prevent overcrowded days.</p></details></div>
+      <div class="faq-item"><details><summary>Can I use AttractionFinder for international travel?<span></span></summary><p>Yes. It features 18 built-in languages, flexible currency settings, and offline guide support.</p></details></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-sec on-ink wrap">
+  <div class="band reveal">
+    <p class="tag" style="justify-content:center">READY WHEN YOU ARE</p>
+    <h2>Every unforgettable journey begins with a balanced itinerary</h2>
+    <p>AttractionFinder — the visual travel workbench for explorers, weekend adventurers, and trip organizers.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn btn-primary" href="#features">Explore the ledger</a>
+      <a class="btn btn-ghost" href="mailto:AttractionFinder@outlook.com">Contact support</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>AttractionFinder</h4>
+        <p style="margin:0;max-width:42ch;font-size:.92rem">AttractionFinder — a smart travel planning and point-of-interest discovery workbench for seamless exploration.</p>
+        <p style="margin:16px 0 0;font-size:.92rem">Support: <a href="mailto:AttractionFinder@outlook.com">AttractionFinder@outlook.com</a></p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Ledger</a></li>
+          <li><a href="#quickcheck">Quick Check</a></li>
+          <li><a href="#gallery">Screenshots</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal &amp; Support</h4>
+        <ul>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="support.html">Support &amp; Data Deletion</a></li>
+          <li><a href="../../index.html">&larr; All Apps Portal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 NITIN SHAH. ALL RIGHTS RESERVED.</span>
+      <span>AHMEDABAD, GUJARAT, INDIA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  function apply(t){root.setAttribute('data-theme',t);
+    if(meta)meta.setAttribute('content',t==='dark'?'#15110C':'#F4EEE0');}
+  var saved=null;try{saved=localStorage.getItem('gb_site_theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);
+    try{localStorage.setItem('gb_site_theme',t);}catch(e){}
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G-Balancer — Gelato &amp; Ice Cream Recipe Balancer App | Sweetness, Overrun, GI/GL Calculator</title>
+<meta name="description" content="G-Balancer is a precise visual recipe balancer for gelato, ice cream, sorbet and kulfi — 150-ingredient database, Quick Check of sweetness, serving temperature, GI/GL, Brix, RVI and mouthfeel, auto stabiliser &amp; emulsifier dosing, overrun, costs, legal nutrition labels and 18 languages.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.g-balancer.com/">
+<meta name="theme-color" content="#15110C">
+<link rel="icon" href="image_11.png">
+<link rel="apple-touch-icon" href="image_11.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.g-balancer.com/">
+<meta property="og:site_name" content="G-Balancer">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="G-Balancer — Precise Visual Recipe Balancer for Gelato &amp; Ice Cream">
+<meta property="og:description" content="Balance gelato and ice cream recipes visually: Quick Check, auto stabilisers &amp; emulsifiers, overrun, costs, legal nutrition, gauges and charts — in 18 languages.">
+<meta property="og:image" content="https://www.g-balancer.com/image_10.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="G-Balancer — Precise Visual Recipe Balancer for Gelato &amp; Ice Cream">
+<meta name="twitter:description" content="150-ingredient database, auto stabiliser &amp; emulsifier dosing, GI/GL, Brix, RVI and legal nutrition labels — in 18 languages. No account needed.">
+<meta name="twitter:image" content="https://www.g-balancer.com/image_10.png">
+<meta name="keywords" content="gelato recipe calculator, ice cream balancer, gelato balancing software, stabilizer dosage calculator, overrun calculator, PAC POD calculator, gelato nutrition label app, sorbet recipe app, kulfi recipe app">
+<meta name="author" content="Nitin Shah">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gelato & Ice Cream Balancer","alternateName":"G-Balancer","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android","url":"https://www.g-balancer.com/","image":"https://www.g-balancer.com/image_10.png","description":"Precise visual recipe balancer for gelato, ice cream, sorbet and kulfi with Quick Check metrics, automatic stabiliser and emulsifier dosing, overrun, costing and legal nutrition labels in 18 languages.","featureList":["150-ingredient database","19 machine profiles","Automatic stabiliser and emulsifier dosing","Evaporation and overrun calculator","Sweetness, GI, GL, Brix and RVI diagnostics","Legal nutrition labels with allergens","18 languages","No account required, works offline"],"inLanguage":["en","hi","gu","mr","ta","kn","te","bn","pa","es","fr","de","it","pt","zh","ja","ar","ru"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},"publisher":{"@type":"Organization","name":"G-Balancer","founder":{"@type":"Person","name":"Nitin Shah"},"address":{"@type":"PostalAddress","addressLocality":"Ahmedabad","addressRegion":"Gujarat","addressCountry":"IN"}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Does G-Balancer need an internet connection or an account?","acceptedAnswer":{"@type":"Answer","text":"No. The app runs entirely on your device, with no sign-up and no cloud sync. Your recipes stay in local storage, and exports are your backup."}},
+  {"@type":"Question","name":"Can I use the nutrition panel on a commercial label?","acceptedAnswer":{"@type":"Answer","text":"Panels are formatted to the layouts required in several countries and are a strong starting point, but you remain responsible for verifying values and wording against the regulations that apply where you sell."}},
+  {"@type":"Question","name":"Are the GI and GL values medical advice?","acceptedAnswer":{"@type":"Answer","text":"No. Glycemic index and load are indicative estimates for recipe development only and must not be used for diabetes management or \"low-GI\" marketing claims."}},
+  {"@type":"Question","name":"Can I move recipes between devices?","acceptedAnswer":{"@type":"Answer","text":"Yes — export your recipes to a file and import them on another device, and print labels and reports at any time."}}
+]}
+</script>
+<style>
+/* ============================================================
+   TOKENS — "The Bench": an instrument-panel duality of
+   cold ink / warm copper, mirroring the app's own Hot/Cold,
+   Before/After logic.
+   ============================================================ */
+:root{
+  --ink:#15110C;          /* near-black, warm charcoal — the night kitchen */
+  --ink-2:#241D14;
+  --paper:#F4EEE0;        /* lab ledger paper */
+  --paper-2:#EAE1CC;
+  --line-on-ink:rgba(244,238,224,.14);
+  --line-on-paper:rgba(21,17,12,.14);
+  --copper:#B5602C;       /* warm accent — flame / hot process */
+  --copper-bright:#D98A4D;
+  --frost:#7FD6DE;        /* cold accent — freeze / cold process */
+  --frost-dim:#4F9AA3;
+  --cream:#F4EEE0;
+  --text-on-ink:#F4EEE0;
+  --text-on-ink-dim:#B8AE9B;
+  --text-on-paper:#1E180F;
+  --text-on-paper-dim:#5B5140;
+  --radius-plate:2px;
+  --radius-pin:3px;
+  --shadow-deep:0 40px 90px -40px rgba(0,0,0,.65);
+  --shadow-plate:0 2px 0 rgba(0,0,0,.25), 0 22px 46px -26px rgba(0,0,0,.55);
+}
+html[data-theme="light"]{
+  --ink:#F4EEE0; --ink-2:#EAE1CC;
+  --paper:#15110C; --paper-2:#241D14;
+  --line-on-ink:rgba(21,17,12,.14);
+  --line-on-paper:rgba(244,238,224,.14);
+  --text-on-ink:#1E180F; --text-on-ink-dim:#5B5140;
+  --text-on-paper:#F4EEE0; --text-on-paper-dim:#B8AE9B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--ink);color:var(--text-on-ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.08;letter-spacing:-.015em;margin:0 0 .5em;font-weight:600}
+a{color:inherit}
+.wrap{width:min(1180px,90vw);margin:0 auto}
+.mono{font-family:'Space Mono',ui-monospace,monospace}
+.on-ink{background:var(--ink);color:var(--text-on-ink)}
+.on-paper{background:var(--paper);color:var(--text-on-paper)}
+.tag{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--copper-bright);display:inline-flex;align-items:center;gap:8px;margin:0 0 16px}
+.tag::before{content:"";width:18px;height:1px;background:var(--copper-bright)}
+.on-paper .tag{color:var(--copper)}
+.on-paper .tag::before{background:var(--copper)}
+
+/* ---------------- header ---------------- */
+header{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  background:color-mix(in oklab,var(--ink) 82%,transparent);border-bottom:1px solid var(--line-on-ink)}
+.nav{display:flex;align-items:center;gap:22px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand img{width:38px;height:38px;border-radius:9px;box-shadow:var(--shadow-plate)}
+.brand b{display:block;font-family:'Fraunces',serif;font-size:1.08rem;letter-spacing:-.01em;font-weight:600}
+.brand small{display:block;color:var(--text-on-ink-dim);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Space Mono',monospace}
+.nav nav{display:flex;gap:26px}
+.nav nav a{text-decoration:none;font-weight:600;font-size:.86rem;color:var(--text-on-ink-dim);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav nav a:hover{color:var(--copper-bright);border-color:var(--copper-bright)}
+@media(max-width:900px){.nav nav{display:none}}
+
+/* dial-switch — the site's theme toggle, built from the app's own
+   toggle-pill language (°C/°F, HF, Phase) */
+.dial-switch{position:relative;width:64px;height:32px;border-radius:999px;border:1px solid var(--line-on-ink);
+  background:var(--ink-2);cursor:pointer;flex:0 0 auto;display:flex;align-items:center;padding:3px}
+.dial-switch .puck{width:24px;height:24px;border-radius:50%;background:linear-gradient(155deg,var(--frost),var(--frost-dim));
+  box-shadow:0 2px 8px rgba(0,0,0,.4);transition:transform .32s cubic-bezier(.6,-0.28,.4,1.34)}
+html[data-theme="light"] .dial-switch .puck{transform:translateX(32px);background:linear-gradient(155deg,var(--copper-bright),var(--copper))}
+.dial-switch .lbl{position:absolute;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.06em;color:var(--text-on-ink-dim)}
+.dial-switch .lbl.cold{left:8px}
+.dial-switch .lbl.warm{right:7px}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding:64px 0 0;background:
+  radial-gradient(1100px 620px at 78% -10%, color-mix(in oklab,var(--copper) 16%, transparent), transparent 60%),
+  repeating-linear-gradient(0deg, transparent 0 39px, var(--line-on-ink) 39px 40px),
+  repeating-linear-gradient(90deg, transparent 0 39px, var(--line-on-ink) 39px 40px);
+  overflow:hidden}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center;padding-bottom:56px}
+.plate-num{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text-on-ink-dim);letter-spacing:.06em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.plate-num i{width:8px;height:8px;border-radius:50%;background:var(--frost);display:inline-block;box-shadow:0 0 10px var(--frost)}
+.hero h1{font-size:clamp(2.35rem,4.6vw,3.7rem);font-weight:600;max-width:15ch}
+.hero h1 i{font-style:italic;font-weight:500;color:var(--copper-bright)}
+.lede{font-size:1.08rem;color:var(--text-on-ink-dim);max-width:52ch}
+.readouts{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
+.readout{font-family:'Space Mono',monospace;font-size:.78rem;border:1px solid var(--line-on-ink);border-radius:3px;
+  padding:8px 12px;color:var(--text-on-ink-dim);background:color-mix(in oklab,var(--ink-2) 60%,transparent)}
+.readout b{color:var(--frost);font-weight:700}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:3px;text-decoration:none;font-weight:700;
+  font-size:.92rem;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;font-family:'Manrope',sans-serif}
+.btn-primary{background:var(--copper);color:#180D05;box-shadow:0 16px 34px -16px color-mix(in oklab,var(--copper) 70%,transparent)}
+.btn-primary:hover{background:var(--copper-bright);transform:translateY(-2px)}
+.btn-ghost{background:transparent;border-color:var(--line-on-ink);color:var(--text-on-ink)}
+.btn-ghost:hover{border-color:var(--frost);color:var(--frost)}
+
+/* the gauges — real crops from the app's own Results tab, framed
+   like the instrument plates used throughout the site */
+.instrument{position:relative;display:flex;flex-direction:column;gap:18px;align-items:center}
+.gauge-shot{width:min(360px,78vw);padding:14px}
+.gauge-shot img{width:100%;display:block;border-radius:2px}
+.gauge-caption{flex-basis:100%;margin-top:4px;text-align:center;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.05em;color:var(--text-on-ink-dim)}
+.gauge-caption b{color:var(--frost)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px;text-align:center}.plate-num{justify-content:center}
+  .lede{margin-inline:auto}.cta{justify-content:center}}
+
+/* nameplate strip */
+.strip{background:var(--ink-2);border-block:1px solid var(--line-on-ink)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:26px 0}
+.strip div{text-align:center;border-left:1px solid var(--line-on-ink);padding:0 8px}
+.strip div:first-child{border-left:none}
+.strip b{display:block;font-family:'Space Mono',monospace;font-size:1.7rem;color:var(--frost);font-weight:700}
+.strip span{font-size:.76rem;color:var(--text-on-ink-dim);font-weight:600;letter-spacing:.02em}
+@media(max-width:700px){.strip .wrap{grid-template-columns:repeat(2,1fr);gap:20px 0}.strip div:nth-child(3){border-left:none}}
+
+/* ---------------- generic section rhythm ---------------- */
+section.pad{padding:100px 0}
+.sec-head{max-width:62ch;margin-bottom:48px}
+.sec-head h2{font-size:clamp(1.7rem,3.2vw,2.4rem)}
+.on-ink .sec-head p{color:var(--text-on-ink-dim)}
+.on-paper .sec-head p{color:var(--text-on-paper-dim)}
+
+/* ---------------- duality (hot/cold) ---------------- */
+.duality{display:grid;grid-template-columns:1fr 1fr}
+.duality-panel{padding:90px 6vw;position:relative}
+.duality-panel.hot{background:linear-gradient(165deg,#1D130A,#150E08);border-right:1px solid var(--line-on-ink)}
+.duality-panel.cold{background:linear-gradient(165deg,#0B1A1C,#0B1310)}
+.duality-panel .tag{margin-bottom:22px}
+.duality-panel.hot .tag,.duality-panel.hot .tag::before{color:var(--copper-bright)}
+.duality-panel.cold .tag,.duality-panel.cold .tag::before{color:var(--frost)}
+.duality-panel h3{font-size:1.7rem;color:var(--text-on-ink)}
+.duality-panel p{color:var(--text-on-ink-dim);max-width:38ch}
+.duality-panel img{width:100%;border-radius:var(--radius-plate);border:1px solid var(--line-on-ink);margin-top:28px;box-shadow:var(--shadow-plate)}
+@media(max-width:860px){.duality{grid-template-columns:1fr}.duality-panel{padding:64px 8vw}.duality-panel.hot{border-right:none;border-bottom:1px solid var(--line-on-ink)}}
+
+/* ---------------- ledger (feature spec sheet) ---------------- */
+.ledger{border-top:1px solid var(--line-on-paper)}
+.ledger-row{display:grid;grid-template-columns:64px 1fr 1.6fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line-on-paper);align-items:baseline}
+.ledger-row .no{font-family:'Space Mono',monospace;color:var(--copper);font-size:.95rem;font-weight:700}
+.ledger-row h3{font-size:1.14rem;margin:0}
+.ledger-row p{margin:0;color:var(--text-on-paper-dim);font-size:.95rem;max-width:56ch}
+@media(max-width:760px){.ledger-row{grid-template-columns:32px 1fr;grid-template-rows:auto auto}.ledger-row p{grid-column:1/-1}}
+
+/* ---------------- quick check split ---------------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:34px}}
+.split.reverse .plate{order:2}
+.plate{position:relative;padding:26px;background:var(--ink-2);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate)}
+.on-paper .plate{background:var(--paper-2);border-color:var(--line-on-paper)}
+.plate::before,.plate::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--copper);top:14px}
+.plate::before{left:14px}.plate::after{right:14px}
+.plate img{width:100%;max-width:340px;display:block;margin:0 auto;border-radius:2px;border:1px solid var(--line-on-ink);box-shadow:var(--shadow-plate)}
+.checks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:0}
+.checks li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line-on-ink)}
+.on-paper .checks li{border-color:var(--line-on-paper)}
+.checks li .no{font-family:'Space Mono',monospace;color:var(--frost);font-size:.8rem;flex:0 0 auto;padding-top:2px}
+.checks li span{color:var(--text-on-ink-dim);font-size:.95rem}
+.on-paper .checks li span{color:var(--text-on-paper-dim)}
+.checks li b{color:var(--text-on-ink)}
+.on-paper .checks li b{color:var(--text-on-paper)}
+
+/* ---------------- video ---------------- */
+.video-sec{padding:110px 0;text-align:center;position:relative;
+  background:radial-gradient(900px 500px at 50% 0%,color-mix(in oklab,var(--frost) 8%,transparent),transparent 60%)}
+.video-sec p{color:var(--text-on-ink-dim);max-width:56ch;margin:0 auto 36px}
+.video-frame{max-width:880px;margin:0 auto;border-radius:var(--radius-plate);overflow:hidden;border:1px solid var(--line-on-ink);box-shadow:var(--shadow-deep);position:relative}
+.video-frame::before{content:"";position:absolute;inset:0;border:6px solid transparent;pointer-events:none}
+.video-frame video{width:100%;display:block}
+.corner-pin{position:absolute;width:16px;height:16px;z-index:2}
+.corner-pin svg{width:100%;height:100%}
+.video-frame .cp-tl{top:8px;left:8px}.video-frame .cp-tr{top:8px;right:8px;transform:scaleX(-1)}
+
+/* ---------------- gallery rail ---------------- */
+.rail-outer{background:var(--ink-2);border-block:1px solid var(--line-on-ink);padding:90px 0}
+.rail{display:flex;gap:26px;overflow-x:auto;padding:6px 4vw 20px;scroll-snap-type:x mandatory}
+.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:start;text-align:left;position:relative}
+.rail .frame{position:relative;padding:10px;background:var(--ink);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate)}
+.rail .frame::before,.rail .frame::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--copper);top:8px}
+.rail .frame::before{left:8px}.rail .frame::after{right:8px}
+.rail img{height:420px;display:block;border-radius:1px}
+.rail figcaption{margin-top:14px;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text-on-ink-dim);letter-spacing:.03em}
+.rail figcaption b{color:var(--frost);margin-right:8px}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:var(--copper);border-radius:10px}
+.rail::-webkit-scrollbar-track{background:transparent}
+
+/* ---------------- languages ---------------- */
+.langs{display:flex;flex-wrap:wrap;gap:10px}
+.langs span{font-family:'Space Mono',monospace;background:transparent;border:1px solid var(--line-on-paper);border-radius:2px;
+  padding:8px 13px;font-weight:400;font-size:.82rem;color:var(--text-on-paper-dim)}
+
+/* ---------------- app store placeholders ---------------- */
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:10px}
+.store-card{background:var(--paper-2);border:1px solid var(--line-on-paper);border-radius:var(--radius-plate);padding:34px 20px;text-align:center}
+.qr-slot{width:120px;height:120px;margin:0 auto 20px;border:1px dashed var(--line-on-paper);border-radius:4px;
+  display:flex;align-items:center;justify-content:center}
+.qr-slot span{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.06em;line-height:1.5;color:var(--text-on-paper-dim)}
+.qr-slot img{width:100%;height:100%;object-fit:contain;border-radius:2px}
+.store-card h3{font-size:1.05rem;margin:0 0 6px}
+.store-tag{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--copper);letter-spacing:.05em}
+@media(max-width:760px){.store-grid{grid-template-columns:1fr;max-width:280px;margin-inline:auto}}
+
+/* ---------------- faq ---------------- */
+.faq-item{border-top:1px solid var(--line-on-ink)}
+.faq-item:last-child{border-bottom:1px solid var(--line-on-ink)}
+details{padding:0}
+details summary{cursor:pointer;font-weight:600;list-style:none;padding:22px 0;display:flex;justify-content:space-between;gap:20px;font-size:1.02rem}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--copper-bright);font-family:'Space Mono',monospace;font-size:1.2rem;flex:0 0 auto}
+details[open] summary::after{content:"–"}
+details p{color:var(--text-on-ink-dim);margin:0 0 22px;font-size:.96rem;max-width:66ch}
+
+/* ---------------- cta band ---------------- */
+.band-sec{padding:100px 0}
+.band{background:var(--ink-2);border:1px solid var(--line-on-ink);border-radius:var(--radius-plate);padding:64px 42px;text-align:center;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 50% 0%,color-mix(in oklab,var(--copper) 18%,transparent),transparent 70%)}
+.band>*{position:relative}
+.band h2{max-width:22ch;margin-inline:auto}
+.band p{color:var(--text-on-ink-dim);max-width:52ch;margin:0 auto 30px}
+
+/* ---------------- footer ---------------- */
+footer{background:#0E0B07;color:var(--text-on-ink-dim);padding:70px 0 34px;border-top:1px solid var(--line-on-ink)}
+footer a{color:var(--frost);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid h4{color:var(--text-on-ink);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 16px;font-weight:400}
+.foot-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:.92rem}
+.legal{margin-top:40px;padding-top:22px;border-top:1px solid var(--line-on-ink);font-size:.78rem;color:var(--text-on-ink-dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace}
+
+/* skip link — visible only on keyboard focus, aids a11y & crawlability */
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--copper);color:#180D05;padding:12px 18px;
+  z-index:100;border-radius:3px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:16px;top:16px}
+
+/* reveal — single-purpose, restrained */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<a href="#top" class="skip-link">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="image_11.png" alt="G-Balancer app icon" width="38" height="38" loading="eager" decoding="async">
+      <span><b>G-Balancer</b><small>Precise Visual Recipe Balancer</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#features">Ledger</a>
+      <a href="#quickcheck">Quick Check</a>
+      <a href="#gallery">Screens</a>
+      <a href="#languages">Languages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="dial-switch" id="themeBtn" type="button" aria-label="Switch between cold and warm theme">
+      <span class="lbl cold">C</span><span class="lbl warm">W</span><span class="puck"></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="plate-num"><i></i>GELATO · ICE CREAM · SORBET · KULFI</p>
+      <h1>Read the mix<br>before it <i>teaches</i> you the hard way.</h1>
+      <p class="lede">G-Balancer turns a recipe into a live instrument panel — sweetness, serving temperature, GI &amp; GL, Brix, RVI and mouthfeel, with stabiliser and emulsifier doses set automatically to your machine.</p>
+      <div class="readouts">
+        <span class="readout"><b>150</b> ingredients</span>
+        <span class="readout"><b>19</b> machine profiles</span>
+        <span class="readout"><b>18</b> languages</span>
+        <span class="readout"><b>0</b> accounts required</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#features">Read the ledger</a>
+        <a class="btn btn-ghost" href="#gallery">Open the workbench →</a>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="plate gauge-shot"><img src="gauge_sweet.png" alt="Sweetness (POD) gauge from the Results tab, reading Sweet" loading="eager" fetchpriority="high" decoding="async"></div>
+      <div class="plate gauge-shot"><img src="gauge_scoop.png" alt="Serving temp vs scoopability gauge from the Results tab, reading Scoopable" loading="eager" fetchpriority="high" decoding="async"></div>
+      <p class="gauge-caption">Straight from the <b>Results</b> tab — same read, every batch.</p>
+    </div>
+  </div>
+</section>
+
+<section class="duality">
+  <div class="duality-panel hot reveal">
+    <p class="tag">HOT PROCESS</p>
+    <h3>Evaporation, cooked to the gram.</h3>
+    <p>Weight and volume after evaporation, churn overrun, and every mix-in — recalculated across fat, sugar, solids and water the instant a number changes.</p>
+    <img src="image_5.png" alt="Evaporation, overrun and mix-ins screen" loading="lazy" decoding="async">
+  </div>
+  <div class="duality-panel cold reveal">
+    <p class="tag">MACHINES &amp; STORAGE</p>
+    <h3>Frozen state, held in check.</h3>
+    <p>Storage cabinet, shelf life and serving temperature feed straight into scoopability and dosing — so the batch that comes out of the cabinet matches the one you designed.</p>
+    <img src="image_2.png" alt="Machine, batch and process setup screen" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="pad on-paper" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">THE LEDGER</p>
+      <h2>Twelve stations, one running formula</h2>
+      <p>Every control writes to the same live model — change a sugar, a machine or an overrun target and the formulation, cost and label update together.</p>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-row"><span class="no">01</span><h3>Machine, batch &amp; process</h3><p>19 machine types with real capacity and overrun ceilings, from pre-freeze bowls to continuous freezers, plus batch size and hot/cold process mode.</p></div>
+      <div class="ledger-row"><span class="no">02</span><h3>150-ingredient database</h3><p>Compositional data for dairy, sugars, fats, fruits, nuts, cocoa and proteins — POD, PAC, solids, fat, ash and cost per kilo already filled in.</p></div>
+      <div class="ledger-row"><span class="no">03</span><h3>Stabilisers &amp; proteins</h3><p>Twelve stabilisers with dose factors driven by fat, acidity, machine and storage — manual selection or the Auto Formulator picks the optimal blend.</p></div>
+      <div class="ledger-row"><span class="no">04</span><h3>Emulsifiers, HLB-corrected</h3><p>Three emulsifiers blended to the ideal HLB range for your fat content, with automatic correction when the blend drifts outside it.</p></div>
+      <div class="ledger-row"><span class="no">05</span><h3>Evaporation &amp; overrun</h3><p>Model weight and volume loss through hot process, or base volume through cold process, and hit a target churn overrun precisely.</p></div>
+      <div class="ledger-row"><span class="no">06</span><h3>Mix-ins &amp; inclusions</h3><p>Fruits, nuts, chocolate, swirls, cookies and cake bits added after churning — shifting fat, sugar, solids, water and cost without touching PAC or scoopability.</p></div>
+      <div class="ledger-row"><span class="no">07</span><h3>Quick Check diagnostics</h3><p>Sweetness, scoopability, GI, GL, Brix and RVI read together, with plain-language advice on which sugar to add, raise or cut.</p></div>
+      <div class="ledger-row"><span class="no">08</span><h3>Key metrics dashboard</h3><p>Live gauges for sweetness, serving temperature versus scoopability, storage temperature, GI and GL — a problem batch is visible at a glance.</p></div>
+      <div class="ledger-row"><span class="no">09</span><h3>Sensory &amp; physical indices</h3><p>Brix, relative viscosity and mouthfeel bands charted beside fat, MSNF, solids, water, lactose and protein.</p></div>
+      <div class="ledger-row"><span class="no">10</span><h3>Legal nutrition &amp; allergens</h3><p>Country-specific nutrient panels with %DV and allergens, plus a full breakdown of every stabiliser and emulsifier dose factor applied.</p></div>
+      <div class="ledger-row"><span class="no">11</span><h3>18 languages, two themes</h3><p>Interface, help system and reports translated end to end, including Indian languages, Arabic, Chinese and Japanese, in light or dark.</p></div>
+      <div class="ledger-row"><span class="no">12</span><h3>Export &amp; searchable help</h3><p>PDF and Excel/CSV export, label printing, and an interactive searchable help system explaining every metric where you need it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="quickcheck">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="tag">SIGNATURE STATION</p>
+        <h2>Quick Check tells you what to fix — and how</h2>
+        <p class="lede">Instead of a wall of numbers, Quick Check reads the mix and answers what matters: will it scoop well, taste right, and serve at the temperature you plan to serve it?</p>
+        <ul class="checks">
+          <li><span class="no mono">01</span><span><b>Sweetness &amp; Brix</b> — measured against style ranges for gelato, ice cream and sorbet.</span></li>
+          <li><span class="no mono">02</span><span><b>Serving temperature</b> — with sugar suggestions to hit your cabinet temperature.</span></li>
+          <li><span class="no mono">03</span><span><b>Glycemic index &amp; load</b> — indicative estimates for recipe development.</span></li>
+          <li><span class="no mono">04</span><span><b>RVI &amp; mouthfeel index</b> — body, chew and melt resistance in a single score.</span></li>
+        </ul>
+      </div>
+      <div class="reveal plate"><img src="image_3.png" alt="Quick Check screen with sweetness, serving temperature, GI, GL, Brix and mouthfeel readings" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<section class="video-sec on-ink">
+  <div class="wrap">
+    <p class="tag">WALKTHROUGH</p>
+    <h2>See G-Balancer in action</h2>
+    <p>Machine selection to a costed, labelled, balanced formulation — in one continuous pass.</p>
+    <div class="video-frame">
+      <span class="corner-pin cp-tl"><svg viewBox="0 0 16 16"><path d="M1 15V1h14" stroke="var(--copper)" stroke-width="2" fill="none"/></svg></span>
+      <span class="corner-pin cp-tr"><svg viewBox="0 0 16 16"><path d="M1 15V1h14" stroke="var(--copper)" stroke-width="2" fill="none"/></svg></span>
+      <video controls preload="none" poster="image_10.png">
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="rail-outer" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">ON THE BENCH</p>
+      <h2>Every screen, built for the bench</h2>
+      <p>Eight instruments from the same panel — diagnostics, dosing, evaporation and legal labelling.</p>
+    </div>
+  </div>
+  <div class="rail">
+    <figure><div class="frame"><img src="image_3.png" alt="Quick Check diagnostics" loading="lazy" decoding="async"></div><figcaption><b>FIG. 01</b>QUICK CHECK</figcaption></figure>
+    <figure><div class="frame"><img src="image_8.png" alt="Legal nutrition panel and allergens" loading="lazy" decoding="async"></div><figcaption><b>FIG. 02</b>LEGAL NUTRITION &amp; ALLERGENS</figcaption></figure>
+    <figure><div class="frame"><img src="image_5.png" alt="Evaporation, overrun and mix-ins" loading="lazy" decoding="async"></div><figcaption><b>FIG. 03</b>EVAPORATION &amp; MIX-INS</figcaption></figure>
+    <figure><div class="frame"><img src="image_6.png" alt="Key metrics dashboard with gauges" loading="lazy" decoding="async"></div><figcaption><b>FIG. 04</b>KEY METRICS DASHBOARD</figcaption></figure>
+    <figure><div class="frame"><img src="image_9.png" alt="Themes and language selection" loading="lazy" decoding="async"></div><figcaption><b>FIG. 05</b>THEMES &amp; LANGUAGES</figcaption></figure>
+    <figure><div class="frame"><img src="image_2.png" alt="Machine, batch and process setup" loading="lazy" decoding="async"></div><figcaption><b>FIG. 06</b>MACHINE, BATCH &amp; PROCESS</figcaption></figure>
+    <figure><div class="frame"><img src="image_7.png" alt="Sensory and physical indices" loading="lazy" decoding="async"></div><figcaption><b>FIG. 07</b>SENSORY &amp; PHYSICAL INDICES</figcaption></figure>
+    <figure><div class="frame"><img src="image_4.png" alt="Stabilisers, proteins and emulsifiers analysis" loading="lazy" decoding="async"></div><figcaption><b>FIG. 08</b>STABILISERS &amp; EMULSIFIERS</figcaption></figure>
+  </div>
+</section>
+
+<section class="pad on-paper" id="languages">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="tag">MULTILINGUAL</p>
+        <h2>Works in the language of your kitchen</h2>
+        <p class="lede">Interface, help system and reports in 18 languages, with the app name written phonetically in each script.</p>
+        <div class="langs" style="margin-top:22px">
+          <span>English</span><span>हिन्दी</span><span>ગુજરાતી</span><span>मराठी</span><span>தமிழ்</span><span>ಕನ್ನಡ</span><span>తెలుగు</span><span>বাংলা</span><span>ਪੰਜਾਬੀ</span><span>Español</span><span>Français</span><span>Deutsch</span><span>Italiano</span><span>Português</span><span>中文</span><span>日本語</span><span>العربية</span><span>Русский</span>
+        </div>
+      </div>
+      <div class="reveal plate"><img src="image_9.png" alt="G-Balancer language and theme settings" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad on-paper" id="stores">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">AVAILABILITY</p>
+      <h2>Coming soon to your app store</h2>
+      <p>Scan the code from your preferred store the moment G-Balancer goes live.</p>
+    </div>
+    <div class="store-grid reveal">
+      <div class="store-card">
+        <!-- Replace this qr-slot's inner content with: <img src="qr-appstore.png" alt="Scan to download on the App Store" loading="lazy" decoding="async"> -->
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>App Store</h3>
+        <span class="store-tag">iOS</span>
+      </div>
+      <div class="store-card">
+        <!-- Replace this qr-slot's inner content with: <img src="qr-googleplay.png" alt="Scan to download on Google Play" loading="lazy" decoding="async"> -->
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>Google Play</h3>
+        <span class="store-tag">Android</span>
+      </div>
+      <div class="store-card">
+        <!-- Replace this qr-slot's inner content with: <img src="qr-galaxystore.png" alt="Scan to download on Galaxy Store" loading="lazy" decoding="async"> -->
+        <div class="qr-slot"><span>QR CODE<br>COMING SOON</span></div>
+        <h3>Galaxy Store</h3>
+        <span class="store-tag">Samsung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad on-ink" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="tag">GOOD TO KNOW</p>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item"><details open><summary>Does G-Balancer need an internet connection or an account?<span></span></summary><p>No. The app runs entirely on your device, with no sign-up and no cloud sync. Your recipes stay in local storage, and exports are your backup.</p></details></div>
+      <div class="faq-item"><details><summary>Can I use the nutrition panel on a commercial label?<span></span></summary><p>Panels are formatted to the layouts required in several countries and are a strong starting point, but you remain responsible for verifying values and wording against the regulations that apply where you sell.</p></details></div>
+      <div class="faq-item"><details><summary>Are the GI and GL values medical advice?<span></span></summary><p>No. Glycemic index and load are indicative estimates for recipe development only and must not be used for diabetes management or "low-GI" marketing claims.</p></details></div>
+      <div class="faq-item"><details><summary>Can I move recipes between devices?<span></span></summary><p>Yes — export your recipes to a file and import them on another device, and print labels and reports at any time.</p></details></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-sec on-ink wrap">
+  <div class="band reveal">
+    <p class="tag" style="justify-content:center">READY WHEN YOU ARE</p>
+    <h2>Precise gelato starts with a balanced sheet</h2>
+    <p>Gelato &amp; Ice Cream Balancer — the visual workbench for artisans, teaching kitchens and small production lines.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn btn-primary" href="#features">Explore the ledger</a>
+      <a class="btn btn-ghost" href="mailto:G-Balancer@outlook.com">Contact support</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>G-Balancer</h4>
+        <p style="margin:0;max-width:42ch;font-size:.92rem">Gelato &amp; Ice Cream Balancer — a precise visual recipe balancer for artisanal frozen desserts.</p>
+        <p style="margin:16px 0 0;font-size:.92rem">Support: <a href="mailto:G-Balancer@outlook.com">G-Balancer@outlook.com</a></p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Ledger</a></li>
+          <li><a href="#quickcheck">Quick Check</a></li>
+          <li><a href="#gallery">Screenshots</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 NITIN SHAH. ALL RIGHTS RESERVED.</span>
+      <span>AHMEDABAD, GUJARAT, INDIA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  function apply(t){root.setAttribute('data-theme',t);
+    if(meta)meta.setAttribute('content',t==='dark'?'#15110C':'#F4EEE0');}
+  var saved=null;try{saved=localStorage.getItem('gb_site_theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);
+    try{localStorage.setItem('gb_site_theme',t);}catch(e){}
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
